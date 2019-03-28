@@ -1,16 +1,26 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import { fillQueue } from '../actions/pieces'
 
 class PieceDisplay extends Component {
-    state={
-        pieces: [1,2,3,4]
+
+    componentDidMount(){
+        this.props.fillQueue() 
     }
+
     render() {
         return (
         <div className="Pieces">
-            {this.state.pieces.map(piece=><div className="Piece">{piece}</div>)}
+            {this.props.piecesQueue.map(pieces=><div className="Piece">{pieces.map(piece=> <tr>{piece.map(block=><td className="block" style={{backgroundColor: block}}></td>)}</tr> ) }</div>)}
         </div>
         )
     }
 }
 
-export default PieceDisplay;
+const mapStateToProps = (state) =>{
+    return{
+      piecesQueue: state.pieces.piecesQueue,
+    }
+  }
+  
+export default connect(mapStateToProps, {fillQueue})(PieceDisplay)
