@@ -11,7 +11,7 @@ class PieceDisplay extends Component {
     render() {
         return (
         <div className="Pieces">
-            {this.props.piecesQueue.map(pieces=><div className="Piece">{pieces.map(piece=> <tr>{piece.map(block=><td className="block" style={{backgroundColor: block}}></td>)}</tr> ) }</div>)}
+            {this.props.piecesQueue.map(pieces=><div className="Piece">{pieces.map(piece=> <tr>{piece.map(block=><td className="block" style={{backgroundColor: block ? block : null}}></td>)}</tr> ) }</div>)}
         </div>
         )
     }
