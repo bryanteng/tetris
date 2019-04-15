@@ -24,6 +24,7 @@ class Board extends Component {
             console.log("up")
         }else if(pressed === "ArrowDown"){
             console.log("down")
+            this.setState({y_coord: this.state.y_coord +1}, this.draw(this.state.x_coord, this.state.y_coord))
         }
       }
 
@@ -41,16 +42,14 @@ class Board extends Component {
         let board = this.state.boardState
     //   if(this.props.currentPiece[0]) console.log(this.props.currentPiece[0][0], "props")
     //   if(!!(board[0][4] && board[0][5] && board[0][6]) === false){
-        console.log(x_coord,"x")
-        console.log(y_coord,"y")
           for(let blocks in this.props.currentPiece){
               for(let block in this.props.currentPiece){
               let temp = +block + +x_coord
-              board[+blocks][+temp] = this.props.currentPiece[blocks][block]
+              board[+blocks + y_coord][+temp] = this.props.currentPiece[blocks][block]
               }
         //   }
       }
-      this.setState({boardState: board})
+      this.setState({boardState: board}, console.log(board, "board after key"))
     }
 
     render() {
